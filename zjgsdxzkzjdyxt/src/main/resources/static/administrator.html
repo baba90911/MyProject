@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后台管理系统</title>
+		<link rel="stylesheet" href="css/administrator.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/administrator.js"></script>
+		
+		<script src="js/vue.min.js"></script>
+		<script src="js/administrator.js"></script>
+		<style>
+			body{
+				margin: 0px;
+			}
+			.out-btn{
+				float: right;
+				margin-top: -110px;
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="out-btn">退出登录</button>
+		<header id="header">
+				<div class="logo"><a href="#" style="font-size: 300%">浙江工商大学准考证打印后台管理系统</a></div>
+		</header>
+			<section id="main">
+				<div class="inner">
+					<section id="one" class="wrapper style1">
+		
+						<header class="special">
+							<select style="text-align-last: center;" onchange="change()">
+								<option>----选择考试----</option>
+								<option>大学外语cet4等级考试准考证</option>
+								<option>大学外语cet6等级考试准考证</option>
+							</select>
+						</header>
+						<div class="content">
+							<input id="efile" type="file" name="excelfile" style="height:40px" class="">
+							<button class="button alt fit" onclick="importdata()"> 导入数据</button>
+							<table>
+								<tr>
+									<td>学校名称</td>
+									<td>学校代码</td>
+									<td>考场号</td>
+									<td>座位号</td>
+									<td>考生姓名</td>
+									<td>班级名称</td>
+									<td>准考证号</td>
+									<td>考试教室</td>
+									<td>考试时间</td>
+									<td>操作</td>
+								</tr>
+								<tr>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td>---</td>
+									<td><a>删除</a></td>
+								</tr>
+							</table>
+						</div>
+					</section>
+				</div>
+			</section>
+			<footer id="footer">
+				<div class="copyright">
+					Copyright ©2011-2013浙江工商大学教务处 版权所有 浙ICP备05073962号 浙公网安备33011802000512号<br /><br />
+					地址:浙江省杭州下沙高教园区学正街18号 邮编：310018 联系电话：(86)571-28877205 28877206 网站管理
+				</div>
+			</footer>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+		</body>
+	</body>
+</html>

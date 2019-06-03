@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<script src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/printpdf.js"></script>
+		<script src="js/html2canvas.js"></script>
+		<script src="js/jspdf.debug.min.js"></script>
+	</head>
+	<body style="padding-top:30px; height:952px;width:1024px; background:#FFFFFF"  >
+		<form  method="post">
+			<input type="button" value="下载PDF" onClick="downImage();" style="width:100px;font-size:10px;">
+			<a id="downPng">图片下载</a>
+			<table style="margin: auto; width:750px;border-collapse: collapse;" id='content' >
+				<tr>
+					<td width="35%" align="center"><img alt="image" src="img/img.jpg"/></td>
+					<td rowspan="10" width="45%" align="left">
+						<h3 align="center">大学外语三、四、六级考试考生须知</h3>
+						<p>
+						1.记住考试时间:考生上午8点45分(下午2点45分)进场，对号入座。 上午9点(下午3点)后考生不得进入考场;<br/>
+						2.考生自带2B铅笔、黑色签字笔、橡皮及听力考试用的收音机; <br/>
+						3.不准带书本、通信(手机)、记忆录放工具、电子辞典等进入考场。在考试过程中，若发现带有者视情节轻重按违反考场纪律或考试作弊论；<br/>
+						4.必须带准考证和身份证(或学生证)，并放课桌上以便监考查对; <br/>
+						5.考生在考试结束前禁止提前退场，考试结束后，须经监考老师收卷清 点无误，待监考教师允许后方可离开考场;<br/>
+						6.听力由学校电台发射，电台频率为FM85.8; <br/>
+						7.特别提醒:四、六级须将试题册背面条形码粘贴到答题卡1的条形码框内，三级必须填涂a或b卷代码，答题要用黑色签字笔，答案不得书写在 规定区域以外，专用答题卡只限用2B铅笔涂点;<br/>
+						8.考生必须严格遵守考场纪律，对违反考场规则和不服从考试工作人员管理者，取消考试成绩并按校纪校规处理;<br/>
+						9.考试中错写、漏填考试相关信息均属考试违纪，成绩零分;<br/>
+						10.四六级考试采用多题多卷形式，每位考生考卷都不相同，请不要相信社会上任何关于标准答案的信息。<br/>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p>学校名称：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>学校代码：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>考场号：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>座位号：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>考生姓名：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>班级名称：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>准考证号：</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>考试教室</p></td>
+				</tr>
+				<tr>
+					<td align="center"><p>考试时间：</p></td>
+				</tr>				
+				<tr>
+					<td colspan="2" align="right">
+						<ul class="actions fit">
+							<li><a class="button alt fit">信息有误</a></li>
+							<li><a class="button alt fit">确认信息并点击下载</a></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
