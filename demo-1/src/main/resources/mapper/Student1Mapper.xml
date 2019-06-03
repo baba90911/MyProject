@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.mapper.Student1Mapper">
+
+	 <select id="findStudent1ById" parameterType="java.lang.Integer" resultType="com.example.demo.bean.Student1">
+	 	SELECT * FROM STUDENT1 WHERE Sid = #{id}
+	 </select>
+
+	<update id="insertStudent1" parameterType="com.example.demo.bean.subject">
+		UPDATE STUDENT1 SET Tname=#{Tname},Evaluation=#{Evaluation} WHERE Sid=#{Sid}
+	</update>
+</mapper>

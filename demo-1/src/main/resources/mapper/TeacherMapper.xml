@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.mapper.TeacherMapper">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	 <select id="findTeacherById" parameterType="java.lang.Integer" resultType="com.example.demo.bean.Teacher">
+	 	SELECT * FROM TEACHER WHERE Tid = #{id}
+	 </select>
+	<insert id="insertTeacher" parameterType="com.example.demo.bean.Teacher" >
+		INSERT INTO TEACHER(Tid,Tname,Tcollege,Tclass,Tpassword) VALUES(#{Tid},#{Tname},#{Tcollege},#{Tclass},#{Tpassword})	
+	</insert>
+	<delete id="deleteTeacherById" parameterType="int">
+		DELETE FROM TEACHER WHERE Tid = #{id}
+	</delete>
+
+	<!-- 根据用户名称模糊查询用户信息列表 -->
+	<!-- 
+		[${}]：表示拼接SQL字符串，即不加解释的原样输出
+	 	[${value}]：表示要拼接的是简单类型参数。
+		 注意：
+		1、如果参数为简单类型时，${}里面的参数名称必须为value 
+		2、${}会引起SQL注入，一般情况下不推荐使用。但是有些场景必须使用${}，比如order by ${colname}
+	-->
+
+	
+	<!-- 添加用户之自增主键返回（selectKey方式） -->
+	<!-- 
+		[selectKey标签]：通过select查询来生成主键
+		[keyProperty]：指定存放生成主键的属性
+		[resultType]：生成主键所对应的Java类型
+		[order]：指定该查询主键SQL语句的执行顺序，相对于insert语句，此时选用AFTER
+		[last_insert_id]：MySQL的函数，要配合insert语句一起使用
+	 -->
+
+	
+</mapper>

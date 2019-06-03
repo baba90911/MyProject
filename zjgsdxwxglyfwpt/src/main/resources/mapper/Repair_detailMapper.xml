@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.dao.Repair_detailDao">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	<insert id="insertRepairDetail" parameterType="com.example.demo.pojo.Repair_detail">
+		INSERT INTO REPAIR_DETAIL(projNum,name,company,linkman,phone,content,file,location,declarant) VALUES(#{projNum},#{name},#{company},#{linkman},#{phone},#{content},#{file},#{location},#{declarant})	
+	</insert>
+	
+	<update id="updateRepairDetail" parameterType="map">
+		UPDATE REPAIR_DETAIL
+		<trim prefix="set" suffixOverrides=",">
+			<if test="receiptman!=null">
+				 receiptman=#{receiptman}, 
+			</if>
+			<if test="date!=null">
+				 date=#{date},
+			</if>
+			<if test="repairContent!=null">
+				 repairContent=#{repairContent},
+			</if>
+			<if test="material!=null">
+				 material=#{material},
+			</if>
+			<if test="money!=null">
+				 money=#{money},
+			</if>
+		</trim>	
+		where projNum=#{projNum}
+	</update>
+	
+	
+	<select id="findRepairDetailByprojNum" parameterType="String"  resultType="com.example.demo.pojo.Repair_detail">
+		 SELECT * FROM REPAIR_DETAIL   WHERE projNum=#{projNum}
+	</select>
+	
+  
+    
+</mapper>

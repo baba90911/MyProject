@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.dao.Department_leader_projDao">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	<insert id="insertDepartment_leader_proj" parameterType="com.example.demo.pojo.Department_ref_proj">
+		INSERT INTO DEPARTMENT_LEADER_PROJ(name,projNum,reqNum,status,company) VALUES(#{name},#{projNum},#{reqNum},#{status},#{company})	
+	</insert>
+	<update id="updateDepartment_leader_proj" parameterType="map">
+		UPDATE DEPARTMENT_LEADER_PROJ
+		<trim prefix="set" suffixOverrides=",">
+			<if test="status!=null">
+				 status=#{status}, 
+			</if>
+			<if test="projNum!=null">
+				 projNum=#{projNum},
+			</if>
+		</trim>	
+		where reqNum=#{reqNum}
+	</update>
+	
+	<select id="findDepartment_leader_projByStatus" parameterType="map" resultType="com.example.demo.pojo.Department_leader_proj">
+		 SELECT * FROM DEPARTMENT_LEADER_PROJ
+        <where>
+            status=#{status}
+        </where>
+        order by id asc
+        limit ${offset},${size}
+	</select>
+
+	<select id="getRowCountByPage" resultType="int">
+        select count(*) from DEPARTMENT_LEADER_PROJ
+    </select>
+</mapper>

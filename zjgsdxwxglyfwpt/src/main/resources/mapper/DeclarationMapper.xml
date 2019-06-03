@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.dao.DeclarationDao">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	<insert id="insertDeclaration" parameterType="com.example.demo.pojo.Declaration">
+		INSERT INTO DECLARATION(reqNum,name,company,feeRepair,feeFree,feeIntotal,linkman,phone,reason,content,location,type,progress) VALUES(#{reqNum},#{name},#{company},#{feeRepair},#{feeFree},#{feeIntotal},#{linkman},#{phone},#{reason},#{content},#{location},#{type},"申报中")	
+	</insert>
+	
+	<select id="getRowCountByPage" resultType="int">
+        select count(*) from DECLARATION
+    </select>
+    
+	<select id="findDeclarationBySP" parameterType="map" resultType="com.example.demo.pojo.Declaration">
+		 SELECT * FROM DECLARATION
+        <where>
+            status=#{status}
+        </where>
+        order by id asc
+        limit ${offset},${size}
+	</select>
+	
+	<select id="findDeclarationByReqNum" parameterType="String" resultType="com.example.demo.pojo.Declaration">
+		SELECT * FROM DECLARATION WHERE REQNUM = #{rqnum}
+	</select>	
+	<update id="updateData" parameterType="String">
+			UPDATE DECLARATION
+			<trim prefix="set" suffixOverrides=",">
+				<if test="projNum!=null">
+					 projNum=#{projNum}, 		
+				</if>
+				<if test="location!=null">
+					 location=#{location},
+				</if>
+				<if test="approveFee!=null">
+					 approveFee=#{approveFee},
+				</if>
+				<if test="progress!=null">
+					 progress=#{progress}, 		
+				</if>
+				<if test="department!=null">
+					department=#{department},
+				</if>
+			</trim>
+			where reqNum=#{reqNum}
+	</update>
+</mapper>

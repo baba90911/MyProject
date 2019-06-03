@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.dao.RepairDao">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	<insert id="insertRepair" parameterType="com.example.demo.pojo.Repair">
+		INSERT INTO REPAIR(projNum,name,declarant,status) VALUES(#{projNum},#{name},#{declarant},#{status})	
+	</insert>
+	
+	
+	<update id="updateRepair" parameterType="map">
+		UPDATE REPAIR
+		<trim prefix="set" suffixOverrides=",">
+			<if test="status!=null">
+				 status=#{status}, 
+			</if>
+			<if test="receiptman!=null">
+				 receiptman=#{receiptman},
+			</if>
+			<if test="reason!=null">
+				 reason=#{reason},
+			</if>
+		</trim>	
+		where projNum=#{projNum}
+	</update>
+	
+	<select id="findRepairByPage" parameterType="map"  resultType="com.example.demo.pojo.Repair">
+		 SELECT * FROM REPAIR
+        <where>
+        	<if test="declarant!=null">
+        		declarant=#{declarant}
+        	</if>
+        </where>
+        order by id asc
+        limit ${offset},${size}
+	</select>
+	
+	<select id="findRepairByPageandStatus" parameterType="map"  resultType="com.example.demo.pojo.Repair">
+		 SELECT * FROM REPAIR
+        <where>
+        	<if test="status!=null">
+        		status=#{status}
+        	</if>
+        	<if test="receiptman!=null">
+        		and receiptman=#{receiptman}
+        	</if>
+        </where>
+        order by id asc
+        limit ${offset},${size}
+	</select>
+    
+    
+    <select id="getRowCountByDeclarant"  parameterType="String" resultType="int">
+    	select count(*) from REPAIR where Declarant=#{Declarant}
+    </select>
+    
+      <select id="getRowCountByStatus"  parameterType="String" resultType="int">
+    	select count(*) from REPAIR where Status=#{Status}
+    </select>
+    
+</mapper>

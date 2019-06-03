@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：此时用mapper代理方式，它的值必须等于对应mapper接口的全限定名  -->
+<mapper namespace="com.example.demo.dao.UsersDao">
+
+	<!-- 根据用户ID，查询用户信息 -->
+	<!-- 
+		[id]：statement的id，要求在命名空间内唯一  
+		[parameterType]：入参的java类型，可是是简单类型、POJO、HashMap
+		[resultType]：查询出的单条结果集对应的java类型
+		[#{}]： 表示一个占位符?
+		[#{id}]：表示该占位符待接收参数的名称为id。注意：如果参数为简单类型时，#{}里面的参数名称可以是任意定义
+	 -->
+	
+	<delete id="deleteuserByusername" parameterType="String">
+		DELETE FROM USERS WHERE ACCOUNT =#{username}
+	</delete>
+	
+	<update id="initializingPwd" parameterType="String">
+		UPDATE USERS  SET PWD="123456" WHERE  ACCOUNT=#{username}
+	</update>
+	
+	<update id="updatePermissions" parameterType="map">
+		UPDATE USERS SET PERMISSIONS=#{permissions} WHERE ACCOUNT=#{account}
+	</update>
+	
+	
+	<select id="findUsersByPage" parameterType="map" resultType="com.example.demo.pojo.Users">
+		 SELECT * FROM USERS
+        limit ${offset},${size}
+	</select>
+	
+	<select id="getRowCountByPage" resultType="int">
+        select count(*) from USERS
+    </select>
+    
+    <select id="findAllPermission" resultType="String">
+    	select permissions from USERS where account="admin"
+    </select>
+    
+</mapper>
